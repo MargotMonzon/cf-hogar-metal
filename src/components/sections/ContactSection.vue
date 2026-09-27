@@ -11,6 +11,8 @@ const projectTypes = [
     'Construcción general',
     'Remodelación',
     'Techumbre',
+    'Canaletas',
+    'Filtraciones',
     'Estructura metálica',
     'Soldadura',
     'Otro',

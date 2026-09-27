@@ -65,25 +65,13 @@ const currentYear = new Date().getFullYear()
                     </span>
 
                     <div class="footer__links">
-                        <a href="#servicios">
-                            Construcción general
-                        </a>
-
-                        <a href="#servicios">
-                            Remodelaciones
-                        </a>
-
-                        <a href="#servicios">
-                            Estructuras metálicas
-                        </a>
-
-                        <a href="#servicios">
-                            Techumbres
-                        </a>
-
-                        <a href="#servicios">
-                            Soldadura
-                        </a>
+                        <a href="#servicios">Construcción general</a>
+                        <a href="#servicios">Remodelaciones</a>
+                        <a href="#servicios">Techumbres</a>
+                        <a href="#servicios">Canaletas</a>
+                        <a href="#servicios">Filtraciones</a>
+                        <a href="#servicios">Estructuras metálicas</a>
+                        <a href="#servicios">Soldadura</a>
                     </div>
                 </div>
 

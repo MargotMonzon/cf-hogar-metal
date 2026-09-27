@@ -6,6 +6,7 @@ import ServiceCard from '../ui/ServiceCard.vue'
 <template>
     <section id="servicios" class="services">
         <div class="container">
+
             <div class="services__header">
                 <div>
                     <span class="services__eyebrow">
@@ -13,22 +14,28 @@ import ServiceCard from '../ui/ServiceCard.vue'
                     </span>
 
                     <h2>
-                        Soluciones para
-                        <span>cada proyecto.</span>
+                        Soluciones para proteger,
+                        <span>mejorar y construir tu hogar.</span>
                     </h2>
                 </div>
 
-                <p>
-                    Desarrollamos trabajos de construcción,
-                    remodelación y estructuras metálicas,
-                    adaptándonos a las características y
-                    necesidades de cada proyecto.
-                </p>
+                <div class="services__description">
+                    <p>
+                        Desde reparaciones de techumbres y filtraciones
+                        hasta remodelaciones y estructuras metálicas.
+                    </p>
+
+                    <p>
+                        Cuéntanos qué necesitas y encuentra la solución
+                        adecuada para tu proyecto.
+                    </p>
+                </div>
             </div>
 
             <div class="services__grid">
                 <ServiceCard v-for="service in services" :key="service.id" :service="service" />
             </div>
+
         </div>
     </section>
 </template>
@@ -44,7 +51,6 @@ import ServiceCard from '../ui/ServiceCard.vue'
     margin-bottom: 60px;
 
     display: grid;
-
     grid-template-columns: 1.3fr 0.7fr;
 
     gap: 70px;
@@ -67,6 +73,8 @@ import ServiceCard from '../ui/ServiceCard.vue'
 }
 
 .services h2 {
+    max-width: 800px;
+
     color: var(--color-dark);
 
     font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -81,14 +89,24 @@ import ServiceCard from '../ui/ServiceCard.vue'
     color: var(--color-primary-hover);
 }
 
-.services__header>p {
-    max-width: 470px;
+/* DESCRIPCIÓN DEL ENCABEZADO */
 
+.services__description {
+    max-width: 470px;
+}
+
+.services__description p {
     color: var(--color-text-muted);
 
     font-size: 1rem;
     line-height: 1.8;
 }
+
+.services__description p+p {
+    margin-top: 12px;
+}
+
+/* GRID DE SERVICIOS */
 
 .services__grid {
     display: grid;
@@ -98,11 +116,15 @@ import ServiceCard from '../ui/ServiceCard.vue'
     gap: 25px;
 }
 
+/* TABLET */
+
 @media (max-width: 1000px) {
     .services__grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* MOBILE / TABLET */
 
 @media (max-width: 768px) {
     .services {
@@ -115,10 +137,12 @@ import ServiceCard from '../ui/ServiceCard.vue'
         gap: 25px;
     }
 
-    .services__header>p {
+    .services__description {
         max-width: 100%;
     }
 }
+
+/* MOBILE */
 
 @media (max-width: 600px) {
     .services {
