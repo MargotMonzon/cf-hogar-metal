@@ -78,7 +78,7 @@ const whatsappUrl = computed(() => {
             rgba(10, 10, 10, 0.96) 0%,
             rgba(10, 10, 10, 0.86) 50%,
             rgba(10, 10, 10, 0.5) 100%),
-        url('/images/hero/hero-construccion.jpg');
+        url('/images/hero/hero.png');
 
     background-size: cover;
     background-position: center;
