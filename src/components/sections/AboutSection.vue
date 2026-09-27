@@ -3,7 +3,7 @@
         <div class="container about__grid">
             <div class="about__image">
                 <div class="about__image-wrapper">
-                    <img src="/images/about/about-main.jpg" alt="Trabajos realizados por C&F Hogar y Metal" />
+                    <img src="/images/about/about-main.png" alt="Trabajos realizados por C&F Hogar y Metal" />
 
                     <div class="about__badge">
                         <strong>C&F</strong>

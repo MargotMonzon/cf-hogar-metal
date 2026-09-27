@@ -6,7 +6,7 @@ export const services = [
       'Construcción, reparación y mantención de techumbres.',
     description:
       'Soluciones para techumbres de viviendas y otras estructuras, incluyendo instalación, reparación y mejoras.',
-    image: '/images/services/techumbres.jpg',
+    image: '/images/services/techumbres.png',
     whatsappMessage:
       'Hola, quisiera solicitar una cotización para un trabajo de techumbre.',
   },
@@ -17,7 +17,7 @@ export const services = [
       'Instalación, reparación y mantención de canaletas.',
     description:
       'Ayudamos a mantener una correcta evacuación de aguas lluvias mediante instalación y reparación de canaletas.',
-    image: '/images/services/canaletas.jpg',
+    image: '/images/services/canaletas.png',
     whatsappMessage:
       'Hola, quisiera solicitar una cotización para instalación o reparación de canaletas.',
   },
@@ -28,7 +28,7 @@ export const services = [
       'Soluciones para filtraciones y problemas de humedad.',
     description:
       'Revisamos y solucionamos filtraciones asociadas a techumbres y estructuras para prevenir daños por humedad.',
-    image: '/images/services/filtraciones.jpg',
+    image: '/images/services/filtraciones.png',
     whatsappMessage:
       'Hola, tengo un problema de filtración y quisiera solicitar una cotización.',
   },
@@ -39,7 +39,7 @@ export const services = [
       'Renovamos espacios interiores y exteriores.',
     description:
       'Mejoramos y renovamos espacios adaptándonos a las necesidades de cada proyecto.',
-    image: '/images/services/remodelaciones.jpg',
+    image: '/images/services/remodelaciones.png',
     whatsappMessage:
       'Hola, quisiera cotizar un trabajo de remodelación.',
   },
@@ -50,7 +50,7 @@ export const services = [
       'Fabricación e instalación a medida.',
     description:
       'Diseñamos y fabricamos soluciones metálicas adaptadas a cada espacio y necesidad.',
-    image: '/images/services/estructuras-metalicas.jpg',
+    image: '/images/services/estructuras-metalicas.png',
     whatsappMessage:
       'Hola, quisiera cotizar un trabajo de estructura metálica.',
   },
@@ -61,7 +61,7 @@ export const services = [
       'Fabricación, reparación y trabajos de soldadura.',
     description:
       'Realizamos trabajos de soldadura para construcción, fabricación y reparación de estructuras.',
-    image: '/images/services/soldadura.jpg',
+    image: '/images/services/soldadura.png',
     whatsappMessage:
       'Hola, quisiera solicitar una cotización para un trabajo de soldadura.',
   },
