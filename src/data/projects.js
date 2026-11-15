@@ -6,7 +6,7 @@ export const projects = [
     location: 'Chile',
     description:
       'Fabricación e instalación de estructura metálica desarrollada según las necesidades del proyecto.',
-    image: '/images/projects/proyecto-01.jpg',
+    image: null,
     featured: true,
   },
   {
@@ -16,7 +16,7 @@ export const projects = [
     location: 'Chile',
     description:
       'Renovación de espacios interiores y exteriores para mejorar funcionalidad y terminaciones.',
-    image: '/images/projects/proyecto-02.jpg',
+    image: null,
     featured: true,
   },
   {
@@ -26,7 +26,7 @@ export const projects = [
     location: 'Chile',
     description:
       'Construcción e instalación de techumbre adaptada a las características del espacio.',
-    image: '/images/projects/proyecto-03.jpg',
+    image: null,
     featured: true,
   },
 
@@ -36,7 +36,7 @@ export const projects = [
     title: 'Trabajo de soldadura',
     category: 'Soldadura',
     location: 'Chile',
-    image: '/images/projects/proyecto-04.jpg',
+    image: null,
     featured: false,
   },
   {
@@ -44,7 +44,7 @@ export const projects = [
     title: 'Ampliación de espacio',
     category: 'Construcción',
     location: 'Chile',
-    image: '/images/projects/proyecto-05.jpg',
+    image: null,
     featured: false,
   },
   {
@@ -52,7 +52,7 @@ export const projects = [
     title: 'Fabricación metálica',
     category: 'Estructuras metálicas',
     location: 'Chile',
-    image: '/images/projects/proyecto-06.jpg',
+    image: null,
     featured: false,
   },
 ]

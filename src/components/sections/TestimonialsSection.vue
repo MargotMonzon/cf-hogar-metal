@@ -1,10 +1,12 @@
 <script setup>
+import { computed } from 'vue'
 import { testimonials } from '../../data/testimonials'
 import TestimonialCard from '../ui/TestimonialCard.vue'
+const publishedTestimonials = computed(() => testimonials.filter((testimonial) => !testimonial.demo))
 </script>
 
 <template>
-    <section class="testimonials">
+    <section v-if="publishedTestimonials.length" class="testimonials">
         <div class="container">
             <div class="testimonials__header">
                 <div>
@@ -25,13 +27,8 @@ import TestimonialCard from '../ui/TestimonialCard.vue'
             </div>
 
             <div class="testimonials__grid">
-                <TestimonialCard v-for="testimonial in testimonials" :key="testimonial.id" :testimonial="testimonial" />
+                <TestimonialCard v-for="testimonial in publishedTestimonials" :key="testimonial.id" :testimonial="testimonial" />
             </div>
-
-            <p class="testimonials__notice">
-                Los testimonios mostrados actualmente son contenido
-                de demostración y serán reemplazados por opiniones reales.
-            </p>
         </div>
     </section>
 </template>

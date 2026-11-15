@@ -244,7 +244,7 @@ const whatsappUrl = computed(() => {
     }
 
     .hero h1 {
-        font-size: clamp(2.8rem, 13vw, 4.5rem);
+        font-size: clamp(2rem, 10vw, 3rem);
 
         letter-spacing: -2px;
     }

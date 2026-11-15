@@ -57,7 +57,7 @@ const filteredProjects = computed(() => {
             <div class="gallery__grid">
                 <article v-for="project in filteredProjects" :key="project.id" class="gallery-card">
                     <div class="gallery-card__image">
-                        <img :src="project.image" :alt="project.title" />
+                        <img v-if="project.image" :src="project.image" :alt="project.title" loading="lazy" /><div v-else class="project-photo-placeholder">Fotografía próximamente</div>
 
                         <div class="gallery-card__overlay">
                             <span>
@@ -82,6 +82,8 @@ const filteredProjects = computed(() => {
 </template>
 
 <style scoped>
+.project-photo-placeholder { min-height: inherit; height: 100%; display: flex; align-items: center; justify-content: center; padding: 60px 24px; background: linear-gradient(135deg, #303030, #151515); color: #e5e5e5; font-size: 0.9rem; }
+
 .gallery {
     padding: 120px 0;
 

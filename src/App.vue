@@ -1,31 +1,7 @@
 <script setup>
-import Navbar from './components/layout/Navbar.vue'
-
-import HeroSection from './components/sections/HeroSection.vue'
-import AboutSection from './components/sections/AboutSection.vue'
-import ServicesSection from './components/sections/ServicesSection.vue'
-import FeaturedProjects from './components/sections/FeaturedProjects.vue'
-import ProjectsGallery from './components/sections/ProjectsGallery.vue'
-import WhyChooseUs from './components/sections/WhyChooseUs.vue'
-import TestimonialsSection from './components/sections/TestimonialsSection.vue'
-import ContactSection from './components/sections/ContactSection.vue'
-import Footer from './components/layout/Footer.vue'
-
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
-  <Navbar />
-
-  <main>
-    <HeroSection />
-    <AboutSection />
-    <ServicesSection />
-    <FeaturedProjects />
-    <ProjectsGallery />
-    <WhyChooseUs />
-    <TestimonialsSection />
-    <ContactSection />
-  </main>
-
-  <Footer />
+  <RouterView />
 </template>

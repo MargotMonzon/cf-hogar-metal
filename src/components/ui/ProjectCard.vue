@@ -10,7 +10,7 @@ defineProps({
 <template>
     <article class="project-card">
         <div class="project-card__image">
-            <img :src="project.image" :alt="project.title" />
+            <img v-if="project.image" :src="project.image" :alt="project.title" loading="lazy" /><div v-else class="project-photo-placeholder">Fotografía próximamente</div>
 
             <div class="project-card__overlay"></div>
 
@@ -30,17 +30,14 @@ defineProps({
                 <p v-if="project.description">
                     {{ project.description }}
                 </p>
-
-                <span class="project-card__link">
-                    Ver proyecto
-                    <span>→</span>
-                </span>
             </div>
         </div>
     </article>
 </template>
 
 <style scoped>
+.project-photo-placeholder { min-height: inherit; height: 100%; display: flex; align-items: center; justify-content: center; padding: 60px 24px; background: linear-gradient(135deg, #303030, #151515); color: #e5e5e5; font-size: 0.9rem; }
+
 .project-card {
     position: relative;
 
