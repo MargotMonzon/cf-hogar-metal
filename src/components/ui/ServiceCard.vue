@@ -1,181 +1,196 @@
 <script setup>
 import { computed } from 'vue'
+import { RouterLink } from 'vue-router'
 import { company } from '../../config/company'
 
 const props = defineProps({
-    service: {
-        type: Object,
-        required: true,
-    },
+  service: {
+    type: Object,
+    required: true,
+  },
 })
 
 const whatsappUrl = computed(() => {
-    return `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(
-        props.service.whatsappMessage,
-    )}`
+  return `https://wa.me/${company.whatsapp}?text=${encodeURIComponent(
+    props.service.whatsappMessage,
+  )}`
 })
 </script>
 
 <template>
-    <article class="service-card">
-        <div class="service-card__image">
-            <img :src="service.image" :alt="service.title" />
+  <article class="service-card">
+    <div class="service-card__image">
+      <img :src="service.image" :alt="service.title" />
 
-            <div class="service-card__overlay"></div>
+      <div class="service-card__overlay"></div>
 
-            <span class="service-card__number">
-                {{ String(service.id).padStart(2, '0') }}
-            </span>
+      <span class="service-card__number">
+        {{ String(service.id).padStart(2, '0') }}
+      </span>
 
-            <div class="service-card__image-content">
-                <h3>
-                    {{ service.title }}
-                </h3>
+      <div class="service-card__image-content">
+        <h3>
+          {{ service.title }}
+        </h3>
 
-                <p>
-                    {{ service.shortDescription }}
-                </p>
-            </div>
-        </div>
+        <p>
+          {{ service.shortDescription }}
+        </p>
+      </div>
+    </div>
 
-        <div class="service-card__content">
-            <p>
-                {{ service.description }}
-            </p>
+    <div class="service-card__content">
+      <RouterLink :to="service.path" class="service-card__details"
+        >Ver {{ service.title.toLowerCase() }} <span aria-hidden="true">→</span></RouterLink
+      >
+      <p>
+        {{ service.description }}
+      </p>
 
-            <a :href="whatsappUrl" target="_blank" rel="noopener noreferrer" class="service-card__button">
-                Cotizar este servicio
-                <span>→</span>
-            </a>
-        </div>
-    </article>
+      <a :href="whatsappUrl" target="_blank" rel="noopener noreferrer" class="service-card__button">
+        Cotizar este servicio
+        <span>→</span>
+      </a>
+    </div>
+  </article>
 </template>
 
 <style scoped>
+.service-card__details {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.service-card__details:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
 .service-card {
-    overflow: hidden;
+  overflow: hidden;
 
-    border-radius: var(--radius-md);
+  border-radius: var(--radius-md);
 
-    background: var(--color-white);
+  background: var(--color-white);
 
-    transition:
-        transform var(--transition),
-        box-shadow var(--transition);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
+  transform: translateY(-8px);
 
-    box-shadow: 0 22px 45px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.12);
 }
 
 .service-card__image {
-    position: relative;
+  position: relative;
 
-    height: 300px;
+  height: 300px;
 
-    overflow: hidden;
+  overflow: hidden;
 
-    background: #d4d4d4;
+  background: #d4d4d4;
 }
 
 .service-card__image img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
+  object-fit: cover;
 
-    transition: transform 0.6s ease;
+  transition: transform 0.6s ease;
 }
 
 .service-card:hover .service-card__image img {
-    transform: scale(1.07);
+  transform: scale(1.07);
 }
 
 .service-card__overlay {
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 
-    background:
-        linear-gradient(180deg,
-            rgba(0, 0, 0, 0.05) 20%,
-            rgba(0, 0, 0, 0.85) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.85) 100%);
 }
 
 .service-card__number {
-    position: absolute;
+  position: absolute;
 
-    top: 20px;
-    right: 20px;
+  top: 20px;
+  right: 20px;
 
-    color: var(--color-white);
+  color: var(--color-white);
 
-    font-size: 0.85rem;
-    font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 800;
 }
 
 .service-card__image-content {
-    position: absolute;
+  position: absolute;
 
-    right: 25px;
-    bottom: 25px;
-    left: 25px;
+  right: 25px;
+  bottom: 25px;
+  left: 25px;
 
-    color: var(--color-white);
+  color: var(--color-white);
 }
 
 .service-card__image-content h3 {
-    font-size: 1.65rem;
+  font-size: 1.65rem;
 }
 
 .service-card__image-content p {
-    margin-top: 7px;
+  margin-top: 7px;
 
-    color: #e5e5e5;
+  color: #e5e5e5;
 
-    font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .service-card__content {
-    padding: 25px;
+  padding: 25px;
 }
 
-.service-card__content>p {
-    color: var(--color-text-muted);
+.service-card__content > p {
+  color: var(--color-text-muted);
 
-    line-height: 1.7;
+  line-height: 1.7;
 }
 
 .service-card__button {
-    min-height: 48px;
+  min-height: 48px;
 
-    margin-top: 25px;
-    padding: 0 18px;
+  margin-top: 25px;
+  padding: 0 18px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    border-radius: var(--radius-sm);
+  border-radius: var(--radius-sm);
 
-    color: var(--color-dark);
-    background: var(--color-primary);
+  color: var(--color-dark);
+  background: var(--color-primary);
 
-    font-weight: 800;
+  font-weight: 800;
 
-    transition:
-        transform var(--transition),
-        background var(--transition);
+  transition:
+    transform var(--transition),
+    background var(--transition);
 }
 
 .service-card__button:hover {
-    background: var(--color-primary-hover);
+  background: var(--color-primary-hover);
 
-    transform: translateY(-2px);
+  transform: translateY(-2px);
 }
 
 .service-card__button span {
-    font-size: 1.3rem;
+  font-size: 1.3rem;
 }
 </style>

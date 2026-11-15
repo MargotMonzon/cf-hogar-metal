@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    <url>
-        <loc>https://cfhogarymetal.cl/</loc>
-    </url>
-
-    <url>
-        <loc>https://cfhogarymetal.cl/cambio-de-canaletas</loc>
-    </url>
-
+  <url><loc>https://cfhogarymetal.cl/</loc></url>
+  <url><loc>https://cfhogarymetal.cl/techumbres</loc></url>
+  <url><loc>https://cfhogarymetal.cl/cambio-de-canaletas</loc></url>
+  <url><loc>https://cfhogarymetal.cl/reparacion-de-filtraciones</loc></url>
+  <url><loc>https://cfhogarymetal.cl/remodelaciones</loc></url>
+  <url><loc>https://cfhogarymetal.cl/estructuras-metalicas</loc></url>
+  <url><loc>https://cfhogarymetal.cl/soldadura</loc></url>
 </urlset>

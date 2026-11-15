@@ -37,3 +37,7 @@ __screenshots__/
 
 # Vite
 *.timestamp-*-*.mjs
+
+# Archivos de revisión y publicación local
+/review-services/
+/release/
