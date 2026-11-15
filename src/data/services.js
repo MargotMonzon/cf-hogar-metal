@@ -6,7 +6,7 @@ export const services = [
     shortDescription: 'Construcción, reparación y mantención de techumbres.',
     description:
       'Soluciones para techumbres de viviendas y otras estructuras, incluyendo instalación, reparación y mejoras.',
-    image: '/images/services/techumbres.png',
+    image: '/images/projects/cubierta-acceso-f045.jpg',
     whatsappMessage: 'Hola, quisiera solicitar una cotización para un trabajo de techumbre.',
   },
   {
@@ -36,7 +36,7 @@ export const services = [
     title: 'Remodelaciones',
     shortDescription: 'Renovamos espacios interiores y exteriores.',
     description: 'Mejoramos y renovamos espacios adaptándonos a las necesidades de cada proyecto.',
-    image: '/images/services/remodelaciones.png',
+    image: '/images/projects/puerta-madera-f026.jpg',
     whatsappMessage: 'Hola, quisiera cotizar un trabajo de remodelación.',
   },
   {
@@ -46,7 +46,7 @@ export const services = [
     shortDescription: 'Fabricación e instalación a medida.',
     description:
       'Diseñamos y fabricamos soluciones metálicas adaptadas a cada espacio y necesidad.',
-    image: '/images/services/estructuras-metalicas.png',
+    image: '/images/projects/estructura-metalica-f017.jpg',
     whatsappMessage: 'Hola, quisiera cotizar un trabajo de estructura metálica.',
   },
   {
@@ -56,7 +56,7 @@ export const services = [
     shortDescription: 'Fabricación, reparación y trabajos de soldadura.',
     description:
       'Realizamos trabajos de soldadura para construcción, fabricación y reparación de estructuras.',
-    image: '/images/services/soldadura.png',
+    image: '/images/projects/escalera-caracol-f024.jpg',
     whatsappMessage: 'Hola, quisiera solicitar una cotización para un trabajo de soldadura.',
   },
 ]

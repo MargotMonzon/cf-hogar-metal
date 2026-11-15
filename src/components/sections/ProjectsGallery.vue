@@ -1,311 +1,346 @@
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { projects } from '../../data/projects'
-
+const props = defineProps({ serviceId: { type: Number, default: null } })
 const selectedCategory = ref('Todos')
-
-const categories = computed(() => {
-    const projectCategories = projects.map((project) => project.category)
-
-    return ['Todos', ...new Set(projectCategories)]
-})
-
-const filteredProjects = computed(() => {
-    if (selectedCategory.value === 'Todos') {
-        return projects
-    }
-
-    return projects.filter(
-        (project) => project.category === selectedCategory.value,
+watch(
+  () => props.serviceId,
+  () => {
+    selectedCategory.value = 'Todos'
+  },
+)
+const matchingProjects = computed(() =>
+  props.serviceId
+    ? projects.filter((project) => project.serviceIds.includes(props.serviceId))
+    : projects,
+)
+const categories = computed(() => [
+  'Todos',
+  ...new Set(matchingProjects.value.map((project) => project.category)),
+])
+const filteredProjects = computed(() =>
+  matchingProjects.value
+    .filter(
+      (project) =>
+        selectedCategory.value === 'Todos' || project.category === selectedCategory.value,
     )
-})
+    .flatMap((project) => project.photos.map((photo) => ({ ...project, ...photo, id: photo.id }))),
+)
 </script>
 
 <template>
-    <section id="galeria" class="gallery">
-        <div class="container">
-            <div class="gallery__header">
-                <div>
-                    <span class="gallery__eyebrow">
-                        Galería
-                    </span>
+  <section v-if="matchingProjects.length" id="galeria" class="gallery">
+    <div class="container">
+      <div class="gallery__header">
+        <div>
+          <span class="gallery__eyebrow"> Galería </span>
 
-                    <h2>
-                        Conoce más de
-                        <span>nuestro trabajo.</span>
-                    </h2>
-                </div>
+          <h2>
+            Conoce más de
+            <span>nuestro trabajo.</span>
+          </h2>
+        </div>
+
+        <p>
+          Explora fotografías de los trabajos realizados por C&F Hogar y Metal en diferentes áreas
+          de construcción, remodelación y estructuras metálicas. Cada título agrupa las vistas de un
+          mismo trabajo.
+        </p>
+      </div>
+
+      <!-- Filtros -->
+      <div v-if="categories.length > 2" class="gallery__filters">
+        <button
+          v-for="category in categories"
+          :key="category"
+          type="button"
+          class="gallery__filter"
+          :class="{
+            'gallery__filter--active': selectedCategory === category,
+          }"
+          @click="selectedCategory = category"
+        >
+          {{ category }}
+        </button>
+      </div>
+
+      <!-- Galería -->
+      <div class="gallery__grid">
+        <article v-for="project in filteredProjects" :key="project.id" class="gallery-card">
+          <a
+            :href="project.image"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="gallery-card__image"
+            :aria-label="project.alt + ': abrir fotografía completa'"
+          >
+            <img v-if="project.image" :src="project.image" :alt="project.alt" loading="lazy" />
+            <div v-else class="project-photo-placeholder">Fotografía próximamente</div>
+
+            <div class="gallery-card__overlay">
+              <span>
+                {{ project.category }}
+              </span>
+
+              <div>
+                <h3>
+                  {{ project.title }}
+                </h3>
 
                 <p>
-                    Explora algunos de los proyectos realizados por
-                    C&F Hogar y Metal en diferentes áreas de construcción,
-                    remodelación y estructuras metálicas.
+                  {{ project.alt }}
                 </p>
+              </div>
             </div>
-
-            <!-- Filtros -->
-            <div class="gallery__filters">
-                <button v-for="category in categories" :key="category" type="button" class="gallery__filter" :class="{
-                    'gallery__filter--active':
-                        selectedCategory === category,
-                }" @click="selectedCategory = category">
-                    {{ category }}
-                </button>
-            </div>
-
-            <!-- Galería -->
-            <div class="gallery__grid">
-                <article v-for="project in filteredProjects" :key="project.id" class="gallery-card">
-                    <div class="gallery-card__image">
-                        <img v-if="project.image" :src="project.image" :alt="project.title" loading="lazy" /><div v-else class="project-photo-placeholder">Fotografía próximamente</div>
-
-                        <div class="gallery-card__overlay">
-                            <span>
-                                {{ project.category }}
-                            </span>
-
-                            <div>
-                                <h3>
-                                    {{ project.title }}
-                                </h3>
-
-                                <p>
-                                    {{ project.location }}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
 </template>
 
 <style scoped>
-.project-photo-placeholder { min-height: inherit; height: 100%; display: flex; align-items: center; justify-content: center; padding: 60px 24px; background: linear-gradient(135deg, #303030, #151515); color: #e5e5e5; font-size: 0.9rem; }
+.project-photo-placeholder {
+  min-height: inherit;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 24px;
+  background: linear-gradient(135deg, #303030, #151515);
+  color: #e5e5e5;
+  font-size: 0.9rem;
+}
 
 .gallery {
-    padding: 120px 0;
+  padding: 120px 0;
 
-    background: var(--color-white);
+  background: var(--color-white);
 }
 
 .gallery__header {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 
-    display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
 
-    gap: 70px;
+  gap: 70px;
 
-    align-items: end;
+  align-items: end;
 }
 
 .gallery__eyebrow {
-    display: inline-block;
+  display: inline-block;
 
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 
-    color: var(--color-primary-hover);
+  color: var(--color-primary-hover);
 
-    font-size: 0.85rem;
-    font-weight: 800;
+  font-size: 0.85rem;
+  font-weight: 800;
 
-    letter-spacing: 3px;
-    text-transform: uppercase;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .gallery h2 {
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
 
-    line-height: 1.05;
-    letter-spacing: -2px;
+  line-height: 1.05;
+  letter-spacing: -2px;
 }
 
 .gallery h2 span {
-    display: block;
+  display: block;
 
-    color: var(--color-primary-hover);
+  color: var(--color-primary-hover);
 }
 
-.gallery__header>p {
-    color: var(--color-text-muted);
+.gallery__header > p {
+  color: var(--color-text-muted);
 
-    line-height: 1.8;
+  line-height: 1.8;
 }
 
 /* FILTROS */
 
 .gallery__filters {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 
-    gap: 10px;
+  gap: 10px;
 }
 
 .gallery__filter {
-    padding: 11px 18px;
+  padding: 11px 18px;
 
-    border: 1px solid #dedede;
-    border-radius: 50px;
+  border: 1px solid #dedede;
+  border-radius: 50px;
 
-    color: var(--color-text);
-    background: transparent;
+  color: var(--color-text);
+  background: transparent;
 
-    font-weight: 700;
+  font-weight: 700;
 
-    cursor: pointer;
+  cursor: pointer;
 
-    transition:
-        background var(--transition),
-        color var(--transition),
-        border-color var(--transition);
+  transition:
+    background var(--transition),
+    color var(--transition),
+    border-color var(--transition);
 }
 
 .gallery__filter:hover {
-    border-color: var(--color-dark);
+  border-color: var(--color-dark);
 }
 
 .gallery__filter--active {
-    border-color: var(--color-dark);
+  border-color: var(--color-dark);
 
-    color: var(--color-white);
-    background: var(--color-dark);
+  color: var(--color-white);
+  background: var(--color-dark);
 }
 
 /* GRID */
 
 .gallery__grid {
-    display: grid;
+  display: grid;
 
-    grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
-    gap: 20px;
+  gap: 20px;
 }
 
 .gallery-card {
-    overflow: hidden;
+  overflow: hidden;
 
-    border-radius: var(--radius-md);
+  border-radius: var(--radius-md);
 
-    background: #e5e5e5;
+  background: #e5e5e5;
 }
 
 .gallery-card__image {
-    position: relative;
+  display: block;
+  position: relative;
 
-    height: 360px;
+  height: 360px;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .gallery-card__image img {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 
-    object-fit: cover;
+  object-fit: cover;
 
-    transition: transform 0.5s ease;
+  transition: transform 0.5s ease;
 }
 
 .gallery-card:hover img {
-    transform: scale(1.07);
+  transform: scale(1.07);
 }
 
 .gallery-card__overlay {
-    position: absolute;
-    inset: 0;
+  position: absolute;
+  inset: 0;
 
-    padding: 25px;
+  padding: 25px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-    color: var(--color-white);
+  color: var(--color-white);
 
-    background:
-        linear-gradient(180deg,
-            rgba(0, 0, 0, 0.08),
-            rgba(0, 0, 0, 0.78));
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.78));
 
-    opacity: 0;
+  opacity: 0;
 
-    transition: opacity var(--transition);
+  transition: opacity var(--transition);
 }
 
-.gallery-card:hover .gallery-card__overlay {
-    opacity: 1;
+.gallery-card:hover .gallery-card__overlay,
+.gallery-card:focus-within .gallery-card__overlay {
+  opacity: 1;
 }
 
-.gallery-card__overlay>span {
-    align-self: flex-start;
+.gallery-card__overlay > span {
+  align-self: flex-start;
 
-    padding: 7px 12px;
+  padding: 7px 12px;
 
-    border-radius: 50px;
+  border-radius: 50px;
 
-    background: var(--color-primary);
+  background: var(--color-primary);
 
-    color: var(--color-dark);
+  color: var(--color-dark);
 
-    font-size: 0.72rem;
-    font-weight: 800;
+  font-size: 0.72rem;
+  font-weight: 800;
 
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .gallery-card__overlay h3 {
-    font-size: 1.4rem;
+  font-size: 1.4rem;
 }
 
 .gallery-card__overlay p {
-    margin-top: 4px;
+  margin-top: 4px;
 
-    color: #d4d4d4;
+  color: #d4d4d4;
 }
 
 @media (max-width: 1000px) {
-    .gallery__grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-    .gallery {
-        padding: 90px 0;
-    }
+  .gallery {
+    padding: 90px 0;
+  }
 
-    .gallery__header {
-        grid-template-columns: 1fr;
+  .gallery__header {
+    grid-template-columns: 1fr;
 
-        gap: 25px;
-    }
+    gap: 25px;
+  }
 
-    .gallery-card__overlay {
-        opacity: 1;
-    }
+  .gallery-card__overlay {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 600px) {
-    .gallery {
-        padding: 70px 0;
-    }
+  .gallery {
+    padding: 70px 0;
+  }
 
-    .gallery__grid {
-        grid-template-columns: 1fr;
-    }
+  .gallery__grid {
+    grid-template-columns: 1fr;
+  }
 
-    .gallery-card__image {
-        height: 320px;
-    }
+  .gallery-card__image {
+    height: 320px;
+  }
 
-    .gallery h2 {
-        letter-spacing: -1px;
-    }
+  .gallery h2 {
+    letter-spacing: -1px;
+  }
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-primary);
+  outline-offset: 4px;
+}
+.gallery-card__overlay {
+  pointer-events: none;
 }
 </style>

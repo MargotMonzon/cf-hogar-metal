@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 import { company } from '../config/company'
 import { services } from '../data/services'
 import { servicePages } from '../data/servicePages'
+import ProjectsGallery from '../components/sections/ProjectsGallery.vue'
 const props = defineProps({ serviceId: { type: Number, required: true } })
 const page = computed(() => servicePages.find((item) => item.id === props.serviceId))
 const service = computed(() => services.find((item) => item.id === props.serviceId))
@@ -81,6 +82,7 @@ const whatsappUrl = computed(
           </div>
         </div>
       </section>
+      <ProjectsGallery :service-id="serviceId" />
       <section class="questions">
         <div class="container">
           <div class="section-heading">
