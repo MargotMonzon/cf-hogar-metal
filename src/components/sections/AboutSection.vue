@@ -6,8 +6,8 @@
                     <img src="/images/about/about-main.png" alt="Trabajos realizados por C&F Hogar y Metal" />
 
                     <div class="about__badge">
-                        <strong>C&F</strong>
-                        <span>Hogar y Metal</span>
+                        <img class="about__badge-logo" src="/images/brand/logocyf.png"
+                            alt="C&F Hogar y Metal - Construcciones Generales" />
                     </div>
                 </div>
             </div>
@@ -98,7 +98,7 @@
     background: #e5e5e5;
 }
 
-.about__image-wrapper img {
+.about__image-wrapper > img {
     width: 100%;
     height: 100%;
 
@@ -110,36 +110,23 @@
 
 .about__badge {
     position: absolute;
-
     right: 25px;
     bottom: 25px;
-
-    width: 150px;
-    height: 150px;
-
-    padding: 20px;
-
+    width: min(220px, calc(100% - 50px));
+    padding: 16px 20px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
     justify-content: center;
-
-    background: var(--color-primary);
-
+    background: #fff;
     border-radius: var(--radius-md);
-
-    color: var(--color-dark);
+    box-shadow: 0 4px 20px rgb(0 0 0 / 12%);
 }
 
-.about__badge strong {
-    font-size: 2.5rem;
-    line-height: 1;
-}
-
-.about__badge span {
-    margin-top: 7px;
-
-    font-size: 0.85rem;
-    font-weight: 700;
+.about__badge-logo {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 .about__eyebrow {
@@ -274,15 +261,10 @@
     }
 
     .about__badge {
-        width: 120px;
-        height: 120px;
-
+        width: min(180px, calc(100% - 30px));
+        padding: 12px 16px;
         right: 15px;
         bottom: 15px;
-    }
-
-    .about__badge strong {
-        font-size: 2rem;
     }
 
     .about h2 {

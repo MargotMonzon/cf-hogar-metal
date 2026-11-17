@@ -20,22 +20,23 @@ const whatsappUrl = computed(() => {
                 </span>
 
                 <h1>
-                    Construimos ideas.
-                    <span>Transformamos espacios.</span>
+                    Construcción y remodelaciones.
+                    <span>Estructuras metálicas en Santiago.</span>
                 </h1>
 
                 <p>
-                    Soluciones en construcción, remodelación y
-                    estructuras metálicas para hogares y empresas.
+                    Techumbres, canaletas, filtraciones, remodelaciones y trabajos en metal.
+                    Cuéntanos qué necesitas y comparte la ubicación de tu proyecto
+                    para confirmar cobertura y coordinar una evaluación.
                 </p>
 
                 <div class="hero__actions">
                     <a :href="whatsappUrl" target="_blank" rel="noopener noreferrer" class="button button--primary">
-                        Solicitar cotización
+                        Cotizar por WhatsApp
                     </a>
 
                     <a href="#proyectos" class="button button--secondary">
-                        Ver proyectos
+                        Ver trabajos realizados
                     </a>
                 </div>
             </div>
@@ -128,11 +129,11 @@ const whatsappUrl = computed(() => {
 
     color: var(--color-white);
 
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(2.6rem, 5.5vw, 4.8rem);
     font-weight: 800;
 
-    line-height: 0.98;
-    letter-spacing: -3px;
+    line-height: 1.08;
+    letter-spacing: -2px;
 }
 
 .hero h1 span {

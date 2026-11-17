@@ -18,11 +18,11 @@ import Footer from '@/components/layout/Footer.vue'
 
     <main>
         <HeroSection />
-        <AboutSection />
         <ServicesSection />
         <FeaturedProjects />
         <ProjectsGallery />
         <WhyChooseUs />
+        <AboutSection />
         <TestimonialsSection />
         <ContactSection />
     </main>
